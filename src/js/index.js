@@ -16,7 +16,7 @@ function onWindowLoad() {
     .then(({ data }) => {
       createOptionsMarkup(data);
     })
-    .catch(err => showErrorToast(err.message))
+    .catch(err => showErrorToast())
     .finally(() => {
       toggleLoader();
     });
@@ -36,7 +36,7 @@ function onSelectChange(e) {
   toggleLoader();
   fetchCatByBreed(e.target.value)
     .then(({ data }) => createCatInfoMarkup(data))
-    .catch(err => showErrorToast(err.message))
+    .catch(err => showErrorToast())
     .finally(() => toggleLoader());
 }
 
@@ -52,8 +52,8 @@ function createCatInfoMarkup(data) {
   renderMarkup('div', markup);
 }
 
-function showErrorToast(text) {
-  const markup = `<strong>Oops! Something went wrong! Try reloading the page!</strong> </br> ${text}`;
+function showErrorToast() {
+  const markup = `<strong>Oops! Something went wrong! Try reloading the page!</strong>`;
   iziToast.error({
     message: markup,
     position: 'topCenter',
